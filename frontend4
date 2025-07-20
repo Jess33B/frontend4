@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日本半導体株式会社 | 次世代チップ技術</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2A2D7C;    /* Deep indigo */
+            --secondary: #FF4D4D;  /* Vibrant coral */
+            --accent: #00C1D4;    /* Electric teal */
+            --light: #F6F5FF;      /* Soft lavender white */
+            --dark: #1A1A2E;      /* Navy black */
+            --text: #2E2E3A;      /* Dark gray */
+            --text-light: #6E6E8A;
+            --success: #00D4A0;    /* Mint green */
+            --warning: #FFB83D;    /* Golden yellow */
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Noto Sans JP', sans-serif;
+            color: var(--text);
+            line-height: 1.8;
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Noto Serif JP', serif;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Futuristic Glass Header */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(42, 45, 124, 0.88);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 77, 77, 0.3);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.15);
+            transition: var(--transition);
+        }
+        header.scrolled {
+            background: rgba(42, 45, 124, 0.95);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: var(--transition);
+        }
+        .logo:hover {
+            transform: scale(1.05);
+        }
+        .logo-chip {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0, 193, 212, 0.4);
+        }
+        .logo-chip:before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: linear-gradient(
+                to right,
+                transparent 20%,
+                rgba(255,255,255,0.3) 50%,
+                transparent 80%
+            );
+            animation: shine 3s infinite linear;
+        }
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(15deg); }
+            100% { transform: translateX(100%) rotate(15deg); }
+        }
+        .logo-text {
+            font-size: 1.8rem;
+            color: white;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        /* Holographic Navigation */
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+        .nav-links a {
+            color: white;
+            font-weight: 500;
+            position: relative;
+            padding: 10px 0;
+            font-size: 1.1rem;
+            text-shadow: 0 0 8px rgba(255, 77, 77, 0.3);
+            transition: var(--transition);
+        }
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--secondary);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--secondary);
+            text-shadow: 0 0 15px rgba(255, 77, 77, 0.5);
+        }
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Cyberpunk Hero Section */
+        .hero {
+            height: 100vh;
+            min-height: 800px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+            padding: 0 5%;
+        }
+        .hero-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), #1A1A2E);
+            z-index: -3;
+        }
+        .hero-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 193, 212, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 193, 212, 0.1) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: -2;
+            animation: gridScroll 40s linear infinite;
+        }
+        @keyframes gridScroll {
+            0% { background-position: 0 0; }
+            100% { background-position: 1000px 1000px; }
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+        @keyframes fadeInUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .hero h1 {
+            font-size: clamp(3.5rem, 6vw, 5.5rem);
+            margin-bottom: 30px;
+            line-height: 1.2;
+            background: linear-gradient(to right, white, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        /* Neon Glow Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 45px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: var(--transition);
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            box-shadow: 0 0 20px rgba(255, 77, 77, 0.5);
+            z-index: 1;
+        }
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255,255,255,0.4), 
+                transparent);
+            transition: var(--transition);
+            z-index: -1;
+        }
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(255, 77, 77, 0.8);
+        }
+        .btn:hover:before {
+            left: 100%;
+        }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            box-shadow: 0 0 15px rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 0 25px rgba(255,255,255,0.5);
+        }
+        .btn i {
+            margin-left: 12px;
+            transition: var(--transition);
+        }
+        .btn:hover i {
+            transform: translateX(8px);
+        }
+        
+        /* Section Design with Floating Effect */
+        section {
+            padding: 150px 5%;
+            position: relative;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 90px;
+            font-size: 3.5rem;
+            position: relative;
+            color: var(--primary);
+        }
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            margin: 30px auto 0;
+            border-radius: 3px;
+            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.4);
+        }
+        
+        /* 3D Vision Section */
+        .vision {
+            background: white;
+        }
+        .vision-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .portrait-container {
+            position: relative;
+            perspective: 1200px;
+        }
+        .portrait {
+            width: 100%;
+            height: 600px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+            transform-style: preserve-3d;
+            transition: var(--transition);
+            background: url('https://images.unsplash.com/photo-1580927752452-89d86da3fa0a?q=80&w=1170&auto=format&fit=crop') center/cover;
+            filter: brightness(1.05) contrast(1.1);
+        }
+        .portrait:before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            right: -30px;
+            bottom: -30px;
+            border: 3px solid var(--accent);
+            border-radius: 15px;
+            z-index: -1;
+            transition: var(--transition);
+        }
+        .portrait-container:hover .portrait {
+            transform: rotateY(8deg) rotateX(5deg);
+        }
+        .portrait-container:hover .portrait:before {
+            transform: translate(15px, 15px);
+        }
+        .quote-container {
+            position: relative;
+        }
+        .quote {
+            font-size: 2rem;
+            font-style: italic;
+            line-height: 1.7;
+            color: var(--text);
+            position: relative;
+            padding: 0 0 0 70px;
+            margin-bottom: 50px;
+        }
+        .quote:before {
+            content: '"';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            font-size: 10rem;
+            color: var(--accent);
+            opacity: 0.1;
+            line-height: 1;
+            z-index: -1;
+        }
+        .president-title {
+            color: var(--secondary);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-top: 50px;
+            font-size: 1.3rem;
+        }
+        .president-title span {
+            color: var(--text-light);
+            font-weight: 400;
+            display: block;
+            margin-top: 8px;
+        }
+        
+        /* Holographic Culture Cards */
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 60px;
+            margin-top: 80px;
+        }
+        .culture-card {
+            background: white;
+            border-radius: 15px;
+            padding: 70px 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        .culture-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, var(--secondary), var(--accent));
+            transition: var(--transition);
+        }
+        .culture-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+        }
+        .culture-card:hover:before {
+            height: 12px;
+        }
+        .culture-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, rgba(0, 193, 212, 0.1), rgba(255, 77, 77, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .culture-card:hover .culture-icon {
+            transform: rotateY(180deg) scale(1.1);
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .culture-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+        .culture-card p {
+            color: var(--text-light);
+            line-height: 1.9;
+            font-size: 1.1rem;
+        }
+        
+        /* Team Gallery with Holographic Effect */
+        .team-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 80px;
+        }
+        .team-member {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 450px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        .team-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+            filter: brightness(0.95);
+        }
+        .team-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(transparent, rgba(42, 45, 124, 0.95));
+            color: white;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.2);
+        }
+        .team-member:hover .team-info {
+            transform: translateY(0);
+        }
+        .team-member:hover .team-photo {
+            transform: scale(1.1);
+            filter: brightness(1);
+        }
+        .team-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+        .team-info p {
+            opacity: 0.9;
+            margin-bottom: 15px;
+        }
+        .team-info p:last-child {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        /* Interactive Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1100px;
+            margin: 100px auto 0;
+        }
+        .timeline:before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--secondary), var(--accent));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 10px;
+        }
+        .timeline-item {
+            padding: 20px 50px;
+            position: relative;
+            width: 50%;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        .timeline-dot {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: 4px solid var(--secondary);
+            border-radius: 50%;
+            position: absolute;
+            top: 25px;
+            z-index: 1;
+            box-shadow: 0 5px 20px rgba(255, 77, 77, 0.4);
+        }
+        .timeline-item:nth-child(odd) .timeline-dot {
+            right: -15px;
+        }
+        .timeline-item:nth-child(even) .timeline-dot {
+            left: -15px;
+        }
+        .timeline-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .timeline-year {
+            color: var(--secondary);
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .timeline-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 1200px) {
+            .vision-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            .portrait {
+                height: 500px;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+            .timeline:before {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 30px;
+                text-align: left !important;
+            }
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            .timeline-dot {
+                left: 27px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            .culture-grid, .team-gallery {
+                grid-template-columns: 1fr;
+            }
+            .section-title {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 700px;
+            }
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 60px;
+            }
+            .quote {
+                font-size: 1.6rem;
+                padding: 0 20px;
+            }
+            .culture-card {
+                padding: 50px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Futuristic Header -->
+    <header id="main-header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-chip">
+                    <i class="fas fa-microchip" style="color: white;"></i>
+                </div>
+                <span class="logo-text">日本半導体</span>
+            </a>
+            <div class="nav-links">
+                <a href="#vision">経営理念</a>
+                <a href="#culture">企業文化</a>
+                <a href="#technology">技術革新</a>
+                <a href="#team">グローバルチーム</a>
+                <a href="#history">沿革</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Cyberpunk Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-content">
+            <h1>次世代半導体技術の進化</h1>
+            <p>量子コンピューティングからAIチップまで、日本発の革新的な半導体ソリューションで新時代をリードします</p>
+            <div style="display: flex; gap: 25px; justify-content: center; margin-top: 60px;">
+                <a href="#technology" class="btn">技術を見る <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact" class="btn btn-outline">コンタクト <i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- President's Vision Section -->
+    <section id="vision" class="vision">
+        <div class="container">
+            <h2 class="section-title">経営理念</h2>
+            <div class="vision-content">
+                <div class="portrait-container">
+                    <div class="portrait"></div>
+                </div>
+                <div class="quote-container">
+                    <blockquote class="quote">
+                        日本半導体は技術の進化を牽引するパイオニアとして、常に未来を見据えたイノベーションを追求します。私たちの技術が築くのは単なる製品ではなく、人類の未来そのものです。
+                    </blockquote>
+                    <p class="president-title">中村 真吾 <span>代表取締役社長</span></p>
+                    <div style="margin-top: 60px;">
+                        <h3 style="color: var(--primary); margin-bottom: 25px; font-size: 1.8rem;">企業使命</h3>
+                        <p style="color: var(--text-light); line-height: 1.9; max-width: 600px;">
+                            半導体技術の限界を突破し、持続可能な未来を創造します。卓越した品質と倫理観を持って、社会に貢献する技術開発に取り組んでいます。私たちのイノベーションは、単なる技術の進化ではなく、人類の生活を向上させる手段です。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section id="culture" class="culture" style="background: var(--light);">
+        <div class="container">
+            <h2 class="section-title">企業文化</h2>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>技術革新第一</h3>
+                    <p>研究開発投資の30%を基礎研究に充て、ブレークスルーを追求します。制約のない創造的環境で、次世代技術を生み出します。</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <i class="fas fa-globe-asia"></i>
+                    </div>
+                    <h3>グローバル連携</h3>
+                    <p>世界15ヶ国の研究拠点が連携し、国境を越えた技術交流を推進。多様な視点が生むイノベーションで市場をリードします。</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>持続可能な成長</h3>
+                    <p>環境負荷ゼロを目指した製造プロセスと、エネルギー効率を追求したチップ設計で持続可能な未来に貢献します。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">技術革新</h2>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>量子半導体</h3>
+                    <p>量子ビットの安定化技術で量子コンピューティングの実用化を加速。従来の1000倍の処理能力を実現します。</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>ニューロモーフィック</h3>
+                    <p>人間の脳を模倣したアーキテクチャで、AI処理のエネルギー効率を飛躍的に向上させます。</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>3D積層技術</h3>
+                    <p>ナノスケールの垂直積層で、従来の2D設計を超える性能と小型化を両立したチップを実現。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" style="background: var(--light);">
+        <div class="container">
+            <h2 class="section-title">グローバルチーム</h2>
+            <div class="team-gallery">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1571260898933-5f5ba0a5d4f6?q=80&w=2070&auto=format&fit=crop" alt="研究チーム" class="team-photo">
+                    <div class="team-info">
+                        <h3>先端研究部門</h3>
+                        <p>東京, 日本</p>
+                        <p>半導体物理の限界に挑む120名以上の研究者が、基礎研究から応用開発までを担当</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="設計チーム" class="team-photo">
+                    <div class="team-info">
+                        <h3>チップ設計チーム</h3>
+                        <p>バンガロール, インド</p>
+                        <p>250名以上のエンジニアが次世代アーキテクチャの設計開発を推進</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2070&auto=format&fit=crop" alt="製造チーム" class="team-photo">
+                    <div class="team-info">
+                        <h3>製造技術部門</h3>
+                        <p>新竹, 台湾</p>
+                        <p>5nm以下プロセスで動作する世界最先端の製造施設を運営</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Timeline -->
+    <section id="history" class="history" style="background: white;">
+        <div class="container">
+            <h2 class="section-title">沿革</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1985</div>
+                        <p>東京で中村半導体研究所として設立。メモリチップの革新に焦点を当てた5名のエンジニアでスタート</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1992</div>
+                        <p>業界標準を2倍上回る高密度DRAM技術を開発し、最初の大きなブレークスルーを達成</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">1999</div>
+                        <p>最初の商用プロセッサNS-1000シリーズを発表。組込みシステムに革命をもたらす</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2008</div>
+                        <p>シリコンバレーに最初の国際設計センターを開設。AIアクセラレーターへの進出を開始</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2015</div>
+                        <p>業界をリードする低消費電力AIチップを発表。世界中の主要テック企業に採用される</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023</div>
+                        <p>2nmチップ開発プログラムに50億ドルを投資し、新しい製造施設を建設することを発表</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background: var(--light); padding-bottom: 100px;">
+        <div class="container">
+            <h2 class="section-title">お問い合わせ</h2>
+            <div style="max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; padding: 60px; box-shadow: 0 30px 60px rgba(0,0,0,0.1);">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+                    <div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 30px; color: var(--primary);">日本半導体株式会社</h3>
+                        <div style="display: flex; flex-direction: column; gap: 30px;">
+                            <div style="display: flex; align-items: flex-start; gap: 20px;">
+                                <div style="width: 60px; height: 60px; background: rgba(0, 193, 212, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.5rem;">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--primary);">本社</h4>
+                                    <p style="color: var(--text-light); line-height: 1.7;">〒100-0005<br>東京都千代田区丸の内3-5-1<br>日本半導体ビル</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: flex-start; gap: 20px;">
+                                <div style="width: 60px; height: 60px; background: rgba(0, 193, 212, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 1.5rem;">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 style="font-size: 1.3rem; margin-bottom: 10px; color: var(--primary);">電話</h4>
+                                    <p style="color: var(--text-light); line-height: 1.7;">03-1234-5678<br>（受付時間 9:00-17:00）</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 1.8rem; margin-bottom: 30px; color: var(--primary);">メッセージを送る</h3>
+                        <form style="display: grid; gap: 25px;">
+                            <div style="display: grid; gap: 5px;">
+                                <label style="font-weight: 500; color: var(--primary);">お名前</label>
+                                <input type="text" style="padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; transition: var(--transition);" placeholder="山田 太郎">
+                            </div>
+                            <div style="display: grid; gap: 5px;">
+                                <label style="font-weight: 500; color: var(--primary);">メールアドレス</label>
+                                <input type="email" style="padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; transition: var(--transition);" placeholder="example@company.co.jp">
+                            </div>
+                            <div style="display: grid; gap: 5px;">
+                                <label style="font-weight: 500; color: var(--primary);">メッセージ</label>
+                                <textarea style="padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; min-height: 150px; transition: var(--transition);" placeholder="お問い合わせ内容をご記入ください"></textarea>
+                            </div>
+                            <button type="submit" class="btn" style="justify-self: start; margin-top: 20px;">送信する <i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--dark); color: white; padding: 100px 5% 50px;">
+        <div style="max-width: 1600px; margin: 0 auto;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 80px;">
+                <div>
+                    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 30px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--accent), var(--primary)); border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-microchip" style="color: white; font-size: 1.3rem;"></i>
+                        </div>
+                        <span style="font-size: 1.8rem; font-weight: 600; letter-spacing: 1px;">日本半導体</span>
+                    </div>
+                    <p style="color: rgba(255,255,255,0.7); line-height: 1.8; margin-bottom: 30px;">1985年の創業以来、世界最先端の半導体技術で未来を創造し続けています。</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="#" style="width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; transition: var(--transition);">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" style="width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; transition: var(--transition);">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" style="width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; transition: var(--transition);">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 25px; color: white;">企業情報</h4>
+                    <ul style="list-style: none; display: grid; gap: 15px;">
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">経営理念</a></li>
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">企業文化</a></li>
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">沿革</a></li>
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">採用情報</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 25px; color: white;">技術情報</h4>
+                    <ul style="list-style: none; display: grid; gap: 15px;">
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">量子半導体</a></li>
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">AIチップ</a></li>
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">3D積層技術</a></li>
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">研究開発</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 25px; color: white;">リソース</h4>
+                    <ul style="list-style: none; display: grid; gap: 15px;">
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">ニュース</a></li>
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">ブログ</a></li>
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">イベント</a></li>
+                        <li><a href="#" style="color: rgba(255,255,255,0.7); transition: var(--transition); display: inline-block;">ホワイトペーパー</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 40px; text-align: center; color: rgba(255,255,255,0.5);">
+                <p>&copy; 2023 日本半導体株式会社. すべての権利を保有.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('main-header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Timeline animation on scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const animateOnScroll = () => {
+            timelineItems.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    item.classList.add('visible');
+                }
+            });
+        };
+
+        // Initialize animations
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+    </script>
+</body>
+</html>
